@@ -20,8 +20,8 @@ public class Field extends StackPane {
     private int closeMines;
     private List<Field> neighbors;
     private Rectangle border = new Rectangle(w,h);
-    private Text content = new Text();
-    private Text mark = new Text();
+    private Text content = new Text("");
+    private Text mark = new Text("");
 
     private Model m;
 
@@ -40,13 +40,7 @@ public class Field extends StackPane {
 
         this.border.setStroke(Color.BLACK);
         this.border.setFill(Color.LIGHTGRAY);
-        this.content.setText(this.hasMine ? "X":"");
-        this.mark.setText("");
-
-        this.content.setStyle("-fx-font-weight: bold");
-        this.mark.setStyle("-fx-font-weight: bold");
         this.content.setVisible(false);
-
         getChildren().addAll(border,content,mark);
     }
 
@@ -63,11 +57,13 @@ public class Field extends StackPane {
             return;
         this.m.setActFields(this.m.getActFields()+1);
         this.border.setFill(Color.WHITE);
-        this.content.setVisible(true);
+        if(this.hasMine)
+            this.content.setText("X");
         if(this.content.getText().equals(""))
             for (Field n:neighbors) {
                 n.activate();
             }
+        this.content.setVisible(true);
         if(this.content.getText().equals("X")){
             m.end(false);
         }
@@ -80,6 +76,7 @@ public class Field extends StackPane {
      * Further right clicks cycle through the markings
      */
     public void mark() {
+        this.mark.setStyle("-fx-font-weight: bold");
         if(!(this.border.getFill() == Color.WHITE)) {
             switch (this.mark.getText()) {
                 case "":
@@ -109,6 +106,7 @@ public class Field extends StackPane {
         this.mark.setText("");
         this.content.setVisible(true);
         if(hasMine) {
+            this.content.setText("X");
             if(win)
                 this.border.setFill(Color.GREEN);
             else
@@ -150,6 +148,7 @@ public class Field extends StackPane {
      * @param closeMines
      */
     public void setCloseMines(int closeMines) {
+        this.content.setStyle("-fx-font-weight: bold");
         this.closeMines = closeMines;
         if(!this.hasMine) {
             switch (closeMines) {

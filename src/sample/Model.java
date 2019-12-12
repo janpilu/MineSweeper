@@ -53,7 +53,6 @@ public class Model {
 
     public void leftClick(Field f){
         f.activate();
-        System.out.println(actFields+" "+safeFields);
         if(actFields==safeFields)
             end(true);
     }
@@ -93,11 +92,10 @@ public class Model {
                 neighbors.add(map[toAddX][toAddY]);
             }
         }
-
         return neighbors;
     }
 
-    public void setDiff(String diff){
+    public void setDiff(String diff) throws Exception{
         switch (diff){
             case "Easy":
                 this.diff = 0.1;
@@ -108,6 +106,8 @@ public class Model {
             case "Hard":
                 this.diff = 0.3;
                 break;
+            default:
+                throw new Exception("Unknown Difficulty");
         }
     }
 
@@ -117,5 +117,17 @@ public class Model {
 
     public void setActFields(int actFields) {
         this.actFields = actFields;
+    }
+
+    public double getDiff(){
+        return diff;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setMap(Field[][] map){
+        this.map = map;
     }
 }

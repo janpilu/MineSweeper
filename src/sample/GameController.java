@@ -54,7 +54,11 @@ public class GameController implements EventHandler<KeyEvent> {
 
         this.m = new Model(size);
 
-        this.m.setDiff(diff);
+        try {
+            this.m.setDiff(diff);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         System.out.println("setup");
         this.map = m.setupBoard();
@@ -109,7 +113,11 @@ public class GameController implements EventHandler<KeyEvent> {
 
     public void res(){
         this.callback.close();
-        setup(this.size, this.diffStr, this.callback);
+        try {
+            setup(this.size, this.diffStr, this.callback);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.callback.show();
     }
 
