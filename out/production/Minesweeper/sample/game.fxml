@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.text.Text?>
+<GridPane fx:id="root" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.GameController">
+    <MenuBar GridPane.columnIndex="0" GridPane.rowIndex="0" fx:id="menu">
+        <Menu fx:id="options" text="Options">
+            <MenuItem text="Reset" onAction="#reset" fx:id="resetItem"></MenuItem>
+            <MenuItem text="Resize" onAction="#resize"></MenuItem>
+        </Menu>
+    </MenuBar>
+    <GridPane fx:id="grid" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+              alignment="center" hgap="5" vgap="5" GridPane.rowIndex="1">
+        <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+    </GridPane>
+</GridPane>
